@@ -1,16 +1,7 @@
 pub trait FromExactSizeIterator<A> {
     fn from_exact_size_iter<T: IntoIterator<Item = A>>(T) -> Self
-        where <T as IntoIterator>::IntoIter: ExactSizeIterator;
+        where T::IntoIter: ExactSizeIterator;
 }
-
-
-pub trait IntoExactSizeIterator: IntoIterator
-    where Self::IntoIter: ExactSizeIterator
-{
-}
-
-
-impl<T: IntoIterator> IntoExactSizeIterator for T where T::IntoIter: ExactSizeIterator {}
 
 
 pub trait CollectExactExt: ExactSizeIterator {
