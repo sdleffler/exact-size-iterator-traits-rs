@@ -53,8 +53,12 @@ impl<A, B> Iterator for ChainExact<A, B>
     type Item = A::Item;
 
     fn next(&mut self) -> Option<Self::Item> {
-        self.1 -= 1;
-        self.0.next()
+        if self.1 > 0 {
+            self.1 -= 1;
+            self.0.next()
+        } else {
+            None
+        }
     }
 
 
